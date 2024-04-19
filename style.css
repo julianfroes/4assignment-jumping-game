@@ -1,62 +1,40 @@
-* { 
-	margin: 0; 
-	padding: 0; 
-	box-sizing: border-box; 
-} 
-
-body { 
-	height: 100vh; 
-	width: 100vw; 
-} 
-
-.background { 
-	height: 100vh; 
-	width: 100vw; 
-	background-color: skyblue; 
-} 
-
-.bird { 
-	height: 100px; 
-	width: 160px; 
+*{
+    padding: 0;
+    margin: 0;
+}
+#game{
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+    overflow: hidden;
+}
+#block{
+    width: 50px;
+    height: 500px;
+    background-color: black;
+    position: relative;
+    left: 400px;
+    animation: block 2s infinite linear;
+}
+@keyframes block{
+    0%{left:400px}
+    100%{left:-50px}
+}
+#hole{
+    width: 50px;
+    height: 150px;
+    background-color: white;
+    position: relative;
+    left: 400px;
+    top: -500px;
+    animation: block 2s infinite linear;
+}
+#character{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    top: 100px;
     border-radius: 50%;
-	position: fixed; 
-	top: 40vh; 
-	left: 30vw; 
-	z-index: 100; 
-} 
-
-.pipe_sprite { 
-	position: fixed; 
-	top: 40vh; 
-	left: 100vw; 
-	height: 70vh; 
-	width: 6vw; 
-	background-color: green; 
-} 
-
-.message { 
-	position: fixed; 
-	z-index: 10; 
-	height: 10vh; 
-	font-size: 10vh; 
-	font-weight: 100; 
-	color: black; 
-	top: 12vh; 
-	left: 20vw; 
-	text-align: center; 
-} 
-
-.score { 
-	position: fixed; 
-	z-index: 10; 
-	height: 10vh; 
-	font-size: 10vh; 
-	font-weight: 100; 
-	color: goldenrod; 
-	top: 0; 
-	left: 0; 
-} 
-
-.score_val { 
-	color: gold; 
-} 
+}
