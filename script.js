@@ -1,6 +1,6 @@
 // Initialize variables for time tracking and deltaTime
-var time = new Date();
-var deltaTime = 0;
+let time = new Date();
+let deltaTime = 0;
 
 // Check if the document is fully loaded, then call Initialize function
 if(document.readyState === "complete" || document.readyState === "interactive"){
@@ -30,32 +30,32 @@ function Loop() {
 //****** GAME LOGIC ********//
 
 // Define variables for game elements and parameters
-var floorY = 22;
-var velY = 0;
-var jumpHeight = 900;
-var gravity = 2500;
+const floorY = 22;
+let velY = 0;
+const jumpHeight = 900;
+const gravity = 2500;
 
-var dinoPosX = 42;
-var dinoPosY = floorY; 
+let dinoPosX = 42;
+let dinoPosY = floorY; 
 
-var floorX = 0;
-var scenarioSpeed = 1280/3;
-var gameVel = 1;
-var score = 0;
+let floorX = 0;
+const scenarioSpeed = 1280/3;
+let gameVel = 1;
+let score = 0;
 
-var playerStand = false;
-var playerJumping = false;
+let playerStand = false;
+let playerJumping = false;
 
-var obstacleTimeUntil = 2;
-var obstacleTimeMin = 0.7;
-var obstacleTimeMax = 1.8;
-var obstacles = [];
+let obstacleTimeUntil = 2;
+const obstacleTimeMin = 0.7;
+const obstacleTimeMax = 1.8;
+const obstacles = [];
 
-var container;
-var dino;
-var scoreText;
-var ground;
-var gameOver;
+let container;
+let dino;
+let scoreText;
+let ground;
+let gameOver;
 
 // Function to start the game
 function Start() {
@@ -143,7 +143,7 @@ function DecideCreateObstacles() {
 
 // Function to create a new obstacle
 function CreateObstacle() {
-    var obstacle = document.createElement("div");
+    const obstacle = document.createElement("div");
     container.appendChild(obstacle);
     obstacle.classList.add("cactus");
     if(Math.random() > 0.5) obstacle.classList.add("cactus2");
@@ -156,7 +156,7 @@ function CreateObstacle() {
 
 // Function to move obstacles horizontally
 function MoveObstacles() {
-    for (var i = obstacles.length - 1; i >= 0; i--) {
+    for (let i = obstacles.length - 1; i >= 0; i--) {
         if(obstacles[i].posX < -obstacles[i].clientWidth) {
             obstacles[i].parentNode.removeChild(obstacles[i]);
             obstacles.splice(i, 1);
@@ -190,12 +190,12 @@ function GameOver() {
 
 // Function to detect collisions between the dinosaur and obstacles
 function DetectCollision() {
-    for (var i = 0; i < obstacles.length; i++) {
-        if(obstacles[i].posX > dinoPosX + dino.clientWidth) {
+    for (const obstacle of obstacles) {
+        if (obstacle.posX > dinoPosX + dino.clientWidth) {
             //EVADING
             break;
-        }else{
-            if(IsCollision(dino, obstacles[i], 10, 30, 15, 20)) {
+        } else {
+            if (IsCollision(dino, obstacle, 10, 30, 15, 20)) {
                 GameOver();
             }
         }
@@ -204,8 +204,8 @@ function DetectCollision() {
 
 // Function to check collision between two elements
 function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft) {
-    var aRect = a.getBoundingClientRect();
-    var bRect = b.getBoundingClientRect();
+    const aRect = a.getBoundingClientRect();
+    const bRect = b.getBoundingClientRect();
 
     return !(
         ((aRect.top + aRect.height - paddingBottom) < (bRect.top)) ||
