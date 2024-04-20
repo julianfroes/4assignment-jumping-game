@@ -3,21 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dino Game</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Game select</title>
+  <link rel="stylesheet" href="index_styles.css">
+  <style src></style>
 </head>
 <body>
-  <div class="container">
+  <div id="game-selector">
+    <button onclick="showGame('dinoGame/dino')">Dino Game</button>
+    <button onclick="showGame('flappyBirdGame/flappybird')">Flappy Bird</button>
+  </div>
+  <div id="game-container">
+  </div>
 
-    <div class="floor"></div>
-    
-    <div class="dino dino-running"></div>
-
-    <div class="score">0</div>
-
-</div>
-
-<div class="game-over">GAME OVER</div>
-  <script src="script.js"></script>
+  <script src="index_script.js"></script>
 </body>
 </html>

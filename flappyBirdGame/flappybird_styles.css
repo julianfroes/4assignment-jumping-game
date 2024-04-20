@@ -46,14 +46,14 @@ body {
 }
 
 .sky {
-    background-image: url('./img/fb-game-background.png');
+    background-image: url('../img/fb-game-background.png');
     width: 500px;
     height: 580px;
     position: absolute;
 }
 
 .ground {
-    background-image: url('./img/bottom-background.png');
+    background-image: url('../img/bottom-background.png');
     width: 500px;
     height: 150px;
     position: absolute;
@@ -62,21 +62,21 @@ body {
 }
 
 .bird {
-    background-image: url('./img/flappy-bird.png');
+    background-image: url('../img/flappy-bird.png');
     position: absolute;
     width: 60px;
     height: 45px;
 }
 
 .obstacle {
-    background-image: url('./img/flappybird-pipe.png');
+    background-image: url('../img/flappybird-pipe.png');
     width: 60px;
     height: 300px;
     position: absolute;
 }
 
 .topObstacle {
-    background-image: url('./img/flappybird-pipe.png');
+    background-image: url('../img/flappybird-pipe.png');
     transform: rotate(180deg);
     width: 60px;
     height: 300px;

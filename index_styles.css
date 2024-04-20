@@ -1,0 +1,24 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #game-container {
+    width: 100vh;
+    height: 95vh;
+    margin: 20px auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hidden {
+    display: none;
+  }
+  .game {
+    border: none; 
+    width: 100%;
+    height: 100%;
+  }

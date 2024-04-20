@@ -31,7 +31,7 @@ body{
   left: 42px;
   z-index: 2;
 
-  background: url(img/dino.png) repeat-x 0px 0px;
+  background: url(../img/dino.png) repeat-x 0px 0px;
   background-size: 336px 84px;
   background-position-x: 0px;
 
@@ -52,7 +52,7 @@ body{
   bottom: 0;
   left: 0;
 
-  background: url(img/floor.png) repeat-x 0px 0px;
+  background: url(../img/floor.png) repeat-x 0px 0px;
   background-size: 50% 42px;
 
 }
@@ -66,13 +66,13 @@ body{
   left: 600px;
   z-index: 1;
 
-  background: url(img/cactus1.png) no-repeat;
+  background: url(../img/cactus1.png) no-repeat;
 }
 .cactus2{
   width: 98px;
   height: 66px;
 
-  background: url(img/cactus2.png) no-repeat;
+  background: url(../img/cactus2.png) no-repeat;
 }
 
 .nube{
@@ -82,7 +82,7 @@ body{
   position: absolute;
   z-index: 0;
 
-  background: url(img/nube.png) no-repeat;
+  background: url(../img/nube.png) no-repeat;
   background-size: 92px 26px;
 }
 
@@ -114,6 +114,48 @@ body{
   font-size: 30px;
   font-family: Verdana;
   font-weight: 700;
+}
+
+.start-text {
+  /*position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #584040;*/
+  position: absolute;
+  width: 100%;
+
+
+  text-align: center;
+  color: #7e928b;
+  font-size: 30px;
+  font-family: Verdana;
+  font-weight: 700;
+}
+
+#restart-button {
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px; 
+  font-size: 16px;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer; 
+  transition: background-color 0.3s;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+#restart-button:hover {
+  background-color: #45a049;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes dinoAnimation{

@@ -56,14 +56,18 @@ let dino;
 let scoreText;
 let ground;
 let gameOver;
+let restartButton;
 
 // Function to start the game
 function Start() {
     gameOver = document.querySelector(".game-over");
+    restartButton = document.getElementById('restart-button');
     ground = document.querySelector(".floor");
     container = document.querySelector(".container");
     scoreText = document.querySelector(".score");
     dino = document.querySelector(".dino");
+    document.getElementById('start-text').style.display = 'none';
+    restartButton.classList.add('hidden');
     document.addEventListener("keydown", HandleKeyDown); // Event listener for key presses
 }
 
@@ -186,6 +190,7 @@ function GainPoints() {
 function GameOver() {
     Crash();
     gameOver.style.display = "block";
+    restartButton.classList.remove('hidden');
 }
 
 // Function to detect collisions between the dinosaur and obstacles
@@ -213,4 +218,35 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
         ((aRect.left + aRect.width - paddingRight) < bRect.left) ||
         (aRect.left + paddingLeft > (bRect.left + bRect.width))
     );
+}
+
+
+// Function to initialize the game
+function Initialize() {
+    time = new Date(); // Reset time
+    document.addEventListener("keydown", HandleGameStart); // Event listener for game start
+}
+
+// Function to handle game start
+function HandleGameStart(ev) {
+    if (ev.keyCode === 32) { // Spacebar
+        document.removeEventListener("keydown", HandleGameStart); // Remove event listener
+        Start(); // Start the game
+        Loop(); // Start the game loop
+    }
+}
+
+function restartGame() {
+    gameOver.style.display = "none";
+    restartButton.classList.add('hidden');
+    playerStand = false;
+    dino.classList.remove("dino-crashed");
+    dino.classList.add("dino-running");
+    score = 0;
+    scoreText.innerText = "0";
+    obstacles.forEach(obstacle => obstacle.parentNode.removeChild(obstacle));
+    obstacles.length = 0;
+    gameVel = 1;
+    ground.style.animationDuration = "3s"
+    Start();
 }
