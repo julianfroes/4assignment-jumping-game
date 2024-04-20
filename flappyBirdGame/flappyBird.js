@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function jump() {
-      let jumpSound = new Audio('./Audio/sfx_wing.mp3');
+      let jumpSound = new Audio('../Audio/sfx_wing.mp3');
       jumpSound.play();
       if (birdBottom < 500) {
           birdBottom += 50;
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
               gameDisplay.removeChild(topObstacle);
               score++;
               scoreDisplay.textContent = score;
-              let pointSound = new Audio('./Audio/sfx_point.mp3');
+              let pointSound = new Audio('../Audio/sfx_point.mp3');
               pointSound.play();
           }
 
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
   generateObstacle();
 
   function gameOver() {
-      let dieSound = new Audio('./Audio/die.mp3');
+      let dieSound = new Audio('../Audio/die.mp3');
       dieSound.play();
       clearInterval(gameTimerId);
       clearInterval(obstacleTimerId);
