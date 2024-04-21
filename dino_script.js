@@ -1,30 +1,30 @@
-// Initialize variables for time tracking and deltaTime
+// initialize variables for time tracking and deltaTime
 let time = new Date();
 let deltaTime = 0;
 
-// Check if the document is fully loaded, then call Initialize function
+// Check if the document is fully loaded, then call initialize function
 if(document.readyState === "complete" || document.readyState === "interactive"){
-    setTimeout(Initialize, 1);
+    setTimeout(initialize, 1);
 }else{
-    document.addEventListener("DOMContentLoaded", Initialize); 
+    document.addEventListener("DOMContentLoaded", initialize); 
 }
 
 // Function to initialize the game
-function Initialize() {
+function initialize() {
     time = new Date(); // Reset time
     Start(); // Start the game
-    Loop(); // Start the game loop
+    loop(); // Start the game loop
 }
 
 // Main game loop
-function Loop() {
+function loop() {
     // Calculate deltaTime for smooth movement
     deltaTime = (new Date() - time) / 1000;
     time = new Date();
     // Update game logic
-    Update();
-    // Call Loop recursively using requestAnimationFrame for smooth animation
-    requestAnimationFrame(Loop);
+    update();
+    // Call loop recursively using requestAnimationFrame for smooth animation
+    requestAnimationFrame(loop);
 }
 
 //****** GAME LOGIC ********//
@@ -59,7 +59,7 @@ let gameOver;
 let restartButton;
 
 // Function to start the game
-function Start() {
+function start() {
     gameOver = document.querySelector(".game-over");
     restartButton = document.getElementById('restart-button');
     ground = document.querySelector(".floor");
@@ -68,31 +68,31 @@ function Start() {
     dino = document.querySelector(".dino");
     document.getElementById('start-text').style.display = 'none';
     restartButton.classList.add('hidden');
-    document.addEventListener("keydown", HandleKeyDown); // Event listener for key presses
+    document.addEventListener("keydown", handleKeyDown); // Event listener for key presses
 }
 
 // Function to update game logic
-function Update() {
+function update() {
     if(playerStand) return; // If game over, stop updating
 
-    MoveDinosaur();
-    MoveGround();
-    DecideCreateObstacles();
-    MoveObstacles();
-    DetectCollision();
+    moveDinosaur();
+    moveGround();
+    decideCreateObstacles();
+    moveObstacles();
+    detectCollision();
 
     velY -= gravity * deltaTime; // Apply gravity to the dinosaur
 }
 
 // Function to handle key presses (spacebar for jumping)
-function HandleKeyDown(ev){
+function handleKeyDown(ev){
     if(ev.keyCode == 32){
-        Jump();
+        jump();
     }
 }
 
 // Function to make the dinosaur jump
-function Jump(){
+function jump(){
     if(dinoPosY === floorY){
         playerJumping = true;
         velY = jumpHeight;
@@ -101,16 +101,16 @@ function Jump(){
 }
 
 // Function to move the dinosaur vertically
-function MoveDinosaur() {
+function moveDinosaur() {
     dinoPosY += velY * deltaTime;
     if(dinoPosY < floorY){
-        TouchGround();
+        touchGround();
     }
     dino.style.bottom = dinoPosY+"px";
 }
 
 // Function to handle when the dinosaur touches the ground
-function TouchGround() {
+function touchGround() {
     dinoPosY = floorY;
     velY = 0;
     if(playerJumping){
@@ -120,33 +120,33 @@ function TouchGround() {
 }
 
 // Function to move the ground horizontally to simulate movement
-function MoveGround() {
-    floorX += CalculateMovement();
+function moveGround() {
+    floorX += calculateMovement();
     ground.style.left = -(floorX % container.clientWidth) + "px";
 }
 
 // Function to calculate horizontal movement based on scenario speed and game velocity
-function CalculateMovement() {
+function calculateMovement() {
     return scenarioSpeed * deltaTime * gameVel;
 }
 
 // Function to handle when the dinosaur crashes
-function Crash() {
+function crash() {
     dino.classList.remove("dino-running");
     dino.classList.add("dino-crashed");
     playerStand = true;
 }
 
 // Function to decide when to create obstacles
-function DecideCreateObstacles() {
+function decideCreateObstacles() {
     obstacleTimeUntil -= deltaTime;
     if(obstacleTimeUntil <= 0) {
-        CreateObstacle();
+        createObstacle();
     }
 }
 
 // Function to create a new obstacle
-function CreateObstacle() {
+function createObstacle() {
     const obstacle = document.createElement("div");
     container.appendChild(obstacle);
     obstacle.classList.add("cactus");
@@ -159,21 +159,21 @@ function CreateObstacle() {
 }
 
 // Function to move obstacles horizontally
-function MoveObstacles() {
+function moveObstacles() {
     for (let i = obstacles.length - 1; i >= 0; i--) {
         if(obstacles[i].posX < -obstacles[i].clientWidth) {
             obstacles[i].parentNode.removeChild(obstacles[i]);
             obstacles.splice(i, 1);
-            GainPoints();
+            gainPoints();
         }else{
-            obstacles[i].posX -= CalculateMovement();
+            obstacles[i].posX -= calculateMovement();
             obstacles[i].style.left = obstacles[i].posX+"px";
         }
     }
 }
 
 // Function to increase score and adjust game velocity
-function GainPoints() {
+function gainPoints() {
     score++;
     scoreText.innerText = score;
     if(score == 5){
@@ -187,21 +187,21 @@ function GainPoints() {
 }
 
 // Function to handle game over
-function GameOver() {
-    Crash();
+function gameOverFunction() {
+    crash();
     gameOver.style.display = "block";
     restartButton.classList.remove('hidden');
 }
 
 // Function to detect collisions between the dinosaur and obstacles
-function DetectCollision() {
+function detectCollision() {
     for (const obstacle of obstacles) {
         if (obstacle.posX > dinoPosX + dino.clientWidth) {
             //EVADING
             break;
         } else {
             if (IsCollision(dino, obstacle, 10, 30, 15, 20)) {
-                GameOver();
+                gameOverFunction();
             }
         }
     }
@@ -222,17 +222,17 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
 
 
 // Function to initialize the game
-function Initialize() {
+function initialize() {
     time = new Date(); // Reset time
-    document.addEventListener("keydown", HandleGameStart); // Event listener for game start
+    document.addEventListener("keydown", handleGameStart); // Event listener for game start
 }
 
 // Function to handle game start
-function HandleGameStart(ev) {
+function handleGameStart(ev) {
     if (ev.keyCode === 32) { // Spacebar
-        document.removeEventListener("keydown", HandleGameStart); // Remove event listener
-        Start(); // Start the game
-        Loop(); // Start the game loop
+        document.removeEventListener("keydown", handleGameStart); // Remove event listener
+        start(); // Start the game
+        loop(); // Start the game loop
     }
 }
 
@@ -248,5 +248,5 @@ function restartGame() {
     obstacles.length = 0;
     gameVel = 1;
     ground.style.animationDuration = "3s"
-    Start();
+    start();
 }
